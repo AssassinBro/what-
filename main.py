@@ -14,16 +14,26 @@ meow_list = ['мяу','мурь~','мряфк~','UwU','OwO','QwQ','meow~','мь�
 async def meow(ctx):
     await ctx.send('meow')
 
+def is_owner(ctx):
+    return ctx.author.id in [683007560868954129, 788319552789413939]
+
 @bot.command()
-async def bot_rakom_pod_stol(ctx):
-    await ctx.send('медленно опускается под стол.Убравшись под него,зад Юны поднимается высоко вверх но не в вашу сторону а в сторону @788319552789413939')
+async def sex(ctx):
+    if is_owner(ctx):
+        await ctx.send('Ам..Нет пожалуй?_Немного покраснев,Юна повернула свой взгляд на дверь в ЛС... <@683007560868954129>_')
+    else:
+        await ctx.send('да пошев ти...')
 @bot.command()
 async def ping(ctx):
     await ctx.send('Мрявх!~')
 
 @tasks.loop(seconds=30)
 async def func():
-    await bot.get_channel(1189778371962474518).send(meow_list[random2.randint(0,len(meow_list))])
+    channel = bot.get_channel(1189778371962474518)
+    if channel:
+        await channel.send(meow_list[random2.randint(0, len(meow_list)-1)])
+    else:
+        print("Канал не найден или бот не имеет доступа к нему.")
 
 @bot.event
 async def on_ready():
