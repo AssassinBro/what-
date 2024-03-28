@@ -8,7 +8,7 @@ config = configparser.ConfigParser()  # создаём объекта парсе
 config.read("config.ini")  # читаем конфиг
 intents = disnake.Intents.default() # Подключаем "Разрешения"
 bot = commands.Bot(intents=intents.all(), command_prefix='>')
-channel_id = int(config.get('Discord','channel'))
+channel_id = int(config.get('Discord','channel_id'))
 servers = [1132291575377039390,1189778371496923207]
 token = config.get('Discord','token')
 owners = list(map(int,config.get('Discord','owners').split()))
@@ -36,7 +36,7 @@ async def sex(inter):
 print("Бот запущен!")
 @tasks.loop(seconds=30)
 async def func():
-    channel = bot.get_channel(1189778371962474518)
+    channel = bot.get_channel(1132291576039747677)
     if channel:
         await channel.send(meow_list[random2.randint(0, len(meow_list)-1)])
     else:
